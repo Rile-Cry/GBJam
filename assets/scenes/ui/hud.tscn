@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgloiuuvcs8jt"]
+
+[ext_resource type="Texture2D" uid="uid://csk838mu6fyrj" path="res://assets/imports/images/ui/HUD.png" id="1_p2tun"]
+[ext_resource type="Script" path="res://assets/scripts/ui/hud.gd" id="2_cq65d"]
+[ext_resource type="Theme" uid="uid://euc1bj1g1yrm" path="res://assets/themes/ui_theme.tres" id="2_xgr3o"]
+
+[node name="HUD" type="TextureRect"]
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("1_p2tun")
+script = ExtResource("2_cq65d")
+
+[node name="Days" type="Label" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 17.0
+offset_bottom = 17.0
+theme = ExtResource("2_xgr3o")
+text = "00"
+
+[node name="Lumite" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = -4.0
+offset_right = 41.0
+offset_bottom = 10.0
+theme = ExtResource("2_xgr3o")
+text = "00"
+horizontal_alignment = 1
+
+[node name="Gem" type="Label" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 17.0
+theme = ExtResource("2_xgr3o")
+text = "00"
+horizontal_alignment = 1
+
+[node name="Unobtainium" type="Label" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = -4.0
+offset_right = 60.0
+offset_bottom = 10.0
+theme = ExtResource("2_xgr3o")
+text = "00"
+horizontal_alignment = 1
+
+[node name="Fuel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 17.0
+theme = ExtResource("2_xgr3o")
+text = "00"
+horizontal_alignment = 1

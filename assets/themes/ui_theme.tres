@@ -1,0 +1,61 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://euc1bj1g1yrm"]
+
+[ext_resource type="Texture2D" uid="uid://clprvem8hd5m0" path="res://assets/imports/images/ui/Button_Focus.png" id="1_0jrg1"]
+[ext_resource type="FontFile" uid="uid://3iluwq8lh60a" path="res://assets/imports/fonts/BitPotionExt.ttf" id="1_udvub"]
+[ext_resource type="Texture2D" uid="uid://82ecglk6w2o1" path="res://assets/imports/images/ui/Panel.png" id="2_0shfa"]
+[ext_resource type="Texture2D" uid="uid://dnnigdtd8cy6q" path="res://assets/imports/images/ui/Button_Normal.png" id="2_f5x05"]
+[ext_resource type="Texture2D" uid="uid://b85oxsffv61nu" path="res://assets/imports/images/ui/Button_Pressed.png" id="3_wg0ho"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6y760"]
+texture = ExtResource("1_0jrg1")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jwmbm"]
+texture = ExtResource("2_f5x05")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gsn77"]
+texture = ExtResource("3_wg0ho")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcrby"]
+texture = ExtResource("2_0shfa")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8d42n"]
+texture = ExtResource("2_0shfa")
+
+[resource]
+default_font_size = 8
+Button/colors/font_color = Color(0.27451, 0.529412, 0.560784, 1)
+Button/colors/font_focus_color = Color(0.27451, 0.529412, 0.560784, 1)
+Button/colors/font_hover_color = Color(0.27451, 0.529412, 0.560784, 1)
+Button/colors/font_pressed_color = Color(0.2, 0.172549, 0.313726, 1)
+Button/styles/focus = SubResource("StyleBoxTexture_6y760")
+Button/styles/normal = SubResource("StyleBoxTexture_jwmbm")
+Button/styles/pressed = SubResource("StyleBoxTexture_gsn77")
+Label/colors/font_color = Color(0.27451, 0.529412, 0.560784, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_udvub")
+Label/styles/normal = null
+Panel/styles/panel = SubResource("StyleBoxTexture_hcrby")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_8d42n")

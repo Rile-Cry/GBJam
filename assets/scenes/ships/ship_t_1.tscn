@@ -1,0 +1,200 @@
+[gd_scene load_steps=23 format=3 uid="uid://car0lq6y5fhlo"]
+
+[ext_resource type="Script" path="res://assets/scripts/ship_t_1.gd" id="1_434by"]
+[ext_resource type="Texture2D" uid="uid://d275g6dmn0wx4" path="res://assets/imports/images/maps/ShipT1.png" id="1_cqlju"]
+[ext_resource type="PackedScene" uid="uid://ctk3u3qtfh3ce" path="res://assets/scenes/tiles/airlock.tscn" id="2_7cpan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr607"]
+size = Vector2(14, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73rhv"]
+size = Vector2(3, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b43gb"]
+size = Vector2(8, 20)
+
+[sub_resource type="Animation" id="Animation_7kpol"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HullSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_7dxg2"]
+resource_name = "engine_start"
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HullSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 2]
+}
+
+[sub_resource type="Animation" id="Animation_437bw"]
+resource_name = "engine_stop"
+length = 0.666673
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HullSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 7, 8, 9, 10, 11, 12, 13, 14, 0]
+}
+
+[sub_resource type="Animation" id="Animation_g3djm"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HullSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_01ef8"]
+resource_name = "travelling"
+length = 0.250006
+loop_mode = 2
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HullSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uv3rw"]
+_data = {
+"RESET": SubResource("Animation_7kpol"),
+"engine_start": SubResource("Animation_7dxg2"),
+"engine_stop": SubResource("Animation_437bw"),
+"idle": SubResource("Animation_g3djm"),
+"travelling": SubResource("Animation_01ef8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t6m3v"]
+animation = &"engine_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mjegw"]
+animation = &"engine_stop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eidkk"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ucsdb"]
+animation = &"travelling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mpevo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcnlo"]
+advance_mode = 2
+advance_condition = &"travelling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jxbff"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_45olb"]
+advance_mode = 2
+advance_condition = &"not_travelling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oibqh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_knqvg"]
+states/engine_start/node = SubResource("AnimationNodeAnimation_t6m3v")
+states/engine_start/position = Vector2(700, 98.5926)
+states/engine_stop/node = SubResource("AnimationNodeAnimation_mjegw")
+states/engine_stop/position = Vector2(349.333, 225.111)
+states/idle/node = SubResource("AnimationNodeAnimation_eidkk")
+states/idle/position = Vector2(336, 99.7778)
+states/travelling/node = SubResource("AnimationNodeAnimation_ucsdb")
+states/travelling/position = Vector2(700.444, 226)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mpevo"), "idle", "engine_start", SubResource("AnimationNodeStateMachineTransition_pcnlo"), "engine_start", "travelling", SubResource("AnimationNodeStateMachineTransition_jxbff"), "travelling", "engine_stop", SubResource("AnimationNodeStateMachineTransition_45olb"), "engine_stop", "idle", SubResource("AnimationNodeStateMachineTransition_oibqh")]
+
+[node name="ShipT1" type="AnimatableBody2D"]
+script = ExtResource("1_434by")
+
+[node name="HullSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_cqlju")
+hframes = 3
+vframes = 5
+frame = 2
+
+[node name="Airlock" parent="." instance=ExtResource("2_7cpan")]
+position = Vector2(-41, 0)
+
+[node name="UpgradeTerminal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeTerminal"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_cr607")
+
+[node name="Computer" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Computer"]
+polygon = PackedVector2Array(53, -2, 71, -2, 66, 13, 49, 13)
+
+[node name="InteractEffect" type="AudioStreamPlayer" parent="."]
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimWait" type="Timer" parent="."]
+
+[node name="TravelWait" type="Timer" parent="."]
+one_shot = true
+
+[node name="Wall" type="CollisionShape2D" parent="."]
+position = Vector2(-65.5, 0)
+shape = SubResource("RectangleShape2D_73rhv")
+
+[node name="ComputerWall" type="CollisionShape2D" parent="."]
+position = Vector2(75, 6)
+shape = SubResource("RectangleShape2D_b43gb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uv3rw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_knqvg")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/not_travelling = false
+parameters/conditions/travelling = false

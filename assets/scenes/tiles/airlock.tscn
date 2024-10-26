@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctk3u3qtfh3ce"]
+
+[ext_resource type="Texture2D" uid="uid://bhyhdxxcypb83" path="res://assets/imports/images/tiles/Airlock.png" id="1_r1wbb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ydc4"]
+size = Vector2(9, 11)
+
+[node name="Airlock" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r1wbb")
+hframes = 2
+
+[node name="AirlockArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirlockArea"]
+position = Vector2(-11.5, -3.5)
+shape = SubResource("RectangleShape2D_5ydc4")

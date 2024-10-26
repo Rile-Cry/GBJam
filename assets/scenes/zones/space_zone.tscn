@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm7g5mvo1gxg5"]
+
+[ext_resource type="Texture2D" uid="uid://mvdy3lry8f0q" path="res://assets/imports/images/bg/SpaceRegionOne.png" id="1_g7r6h"]
+[ext_resource type="Script" path="res://assets/scripts/space_zone.gd" id="1_vasjt"]
+[ext_resource type="PackedScene" uid="uid://bgloiuuvcs8jt" path="res://assets/scenes/ui/hud.tscn" id="3_7kgum"]
+
+[node name="SpaceZone" type="Node"]
+script = ExtResource("1_vasjt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
+position = Vector2(80, 72)
+motion_mirroring = Vector2(160, 144)
+
+[node name="Background" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_g7r6h")
+centered = false
+
+[node name="Back" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+
+[node name="Middle" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+
+[node name="Front" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_7kgum")]

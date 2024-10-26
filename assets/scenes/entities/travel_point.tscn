@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bji2r1yqcxf7f"]
+
+[ext_resource type="Script" path="res://assets/scripts/entities/TravelPoint.gd" id="1_s8bye"]
+
+[node name="TravelPoint" type="Node2D"]
+script = ExtResource("1_s8bye")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

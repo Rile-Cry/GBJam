@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://fnj5chvkxr38"]
+
+[ext_resource type="Texture2D" uid="uid://1r7yvha23heq" path="res://assets/imports/images/sprites/ShipTierOne.png" id="1_xam72"]
+
+[sub_resource type="Animation" id="Animation_qeouk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_l1op4"]
+resource_name = "idle"
+length = 0.10001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m2pn8"]
+resource_name = "moving"
+length = 0.500013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w6olq"]
+_data = {
+"RESET": SubResource("Animation_qeouk"),
+"idle": SubResource("Animation_l1op4"),
+"moving": SubResource("Animation_m2pn8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3k8fh"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7x5u"]
+animation = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5lw7x"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8v6wv"]
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ee3w3"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8pv2q"]
+states/idle/node = SubResource("AnimationNodeAnimation_3k8fh")
+states/idle/position = Vector2(357.333, 100.519)
+states/moving/node = SubResource("AnimationNodeAnimation_t7x5u")
+states/moving/position = Vector2(561.333, 98.8889)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_5lw7x"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_8v6wv"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_ee3w3")]
+
+[node name="ShipTierOne" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xam72")
+hframes = 5
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w6olq")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_8pv2q")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/idle = false
+parameters/conditions/moving = false

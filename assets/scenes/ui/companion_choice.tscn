@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjtvfobngfruy"]
+
+[ext_resource type="Theme" uid="uid://euc1bj1g1yrm" path="res://assets/themes/ui_theme.tres" id="1_d8syd"]
+[ext_resource type="Script" path="res://assets/scripts/ui/companion_choice.gd" id="1_u6uf3"]
+[ext_resource type="Texture2D" uid="uid://cbhylf8qgbfts" path="res://assets/imports/images/sprites/dog_choice.png" id="3_mxkrs"]
+[ext_resource type="Texture2D" uid="uid://bb41xvhbkk0es" path="res://assets/imports/images/sprites/bird_choice.png" id="4_kj34q"]
+[ext_resource type="Texture2D" uid="uid://by8pchp6qp8q0" path="res://assets/imports/images/sprites/fish_choice.png" id="5_y8ef3"]
+
+[node name="CompanionChoice" type="CanvasLayer"]
+script = ExtResource("1_u6uf3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8syd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Choose your companion"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Dog" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Dog"]
+layout_mode = 2
+texture = ExtResource("3_mxkrs")
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Dog"]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 0
+text = "Dog"
+
+[node name="Bird" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Bird"]
+layout_mode = 2
+texture = ExtResource("4_kj34q")
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Bird"]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 0
+text = "Bird"
+
+[node name="Fish" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fish"]
+layout_mode = 2
+texture = ExtResource("5_y8ef3")
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Fish"]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 0
+text = "Fish"
